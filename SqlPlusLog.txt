@@ -1,0 +1,65 @@
+﻿// log, Oracle 11g 
+// в MD5 хэши могут повторяться
+//TODO export sql tables from sqplplus
+
+CREATE TABLE scans(
+id number(10) NOT NULL,
+started timestamp(4) NOT NULL,
+CONSTRAINT scans_pk PRIMARY KEY (id)
+);
+CREATE SEQUENCE scans_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER scans_ai 
+BEFORE INSERT ON scans 
+FOR EACH ROW
+
+BEGIN
+  SELECT scans_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+/
+
+CREATE TABLE hashes (
+id number(10) NOT NULL,
+path varchar(500) NOT NULL,
+hash varchar(32),
+scan_id number(10) NOT NULL,
+CONSTRAINT hashes_pk PRIMARY KEY (id),
+CONSTRAINT hashes_fk
+  FOREiGN KEY (scan_id)
+  REFERENCES scans(id)
+);
+
+CREATE SEQUENCE hashes_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER hashes_ai 
+BEFORE INSERT ON hashes 
+FOR EACH ROW
+
+BEGIN
+  SELECT hashes_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+/
+
+CREATE TABLE logs(
+id number(10) NOT NULL,
+exception varchar(260) NOT NULL,
+occured timestamp(4) NOT NULL,
+CONSTRAINT logs_pk PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE logs_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER logs_ai 
+BEFORE INSERT ON logs 
+FOR EACH ROW
+
+BEGIN
+  SELECT logs_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+/

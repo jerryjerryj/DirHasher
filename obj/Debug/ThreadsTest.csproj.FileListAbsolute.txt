@@ -1,0 +1,8 @@
+F:\My_Pro\ThreadsTest\ThreadsTest\bin\Debug\ThreadsTest.exe.config
+F:\My_Pro\ThreadsTest\ThreadsTest\bin\Debug\ThreadsTest.exe
+F:\My_Pro\ThreadsTest\ThreadsTest\bin\Debug\ThreadsTest.pdb
+F:\My_Pro\ThreadsTest\ThreadsTest\obj\Debug\ThreadsTest.exe
+F:\My_Pro\ThreadsTest\ThreadsTest\obj\Debug\ThreadsTest.pdb
+F:\My_Pro\ThreadsTest\ThreadsTest\bin\Debug\Dapper.dll
+F:\My_Pro\ThreadsTest\ThreadsTest\bin\Debug\Dapper.xml
+F:\My_Pro\ThreadsTest\ThreadsTest\obj\Debug\ThreadsTest.csprojResolveAssemblyReference.cache
