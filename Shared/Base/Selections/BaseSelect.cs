@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
 
-namespace ThreadsTest.Shared.Base.Selections
+namespace DirHasher.Shared.Base.Selections
 {
 	public abstract class BaseSelect<TQueryParams, TQueryResult> : Base
 	{

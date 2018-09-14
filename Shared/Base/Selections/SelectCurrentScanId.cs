@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using System.Data.OleDb;
 using Dapper;
-using ThreadsTest.Shared.Base.Params;
+using DirHasher.Shared.Base.Params;
 
-namespace ThreadsTest.Shared.Base.Selections
+namespace DirHasher.Shared.Base.Selections
 {
 	class SelectCurrentScanId : BaseSelect<ScanParams, int>
 	{

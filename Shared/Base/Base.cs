@@ -8,7 +8,7 @@ using System.Data.OleDb;
 
 
 
-namespace ThreadsTest.Shared.Base
+namespace DirHasher.Shared.Base
 {
 	 public class Base
 	{

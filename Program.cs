@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 
-namespace ThreadsTest
+namespace DirHasher
 {
-	//TODO select scan_sec
+	//TODO using на считывание с диска
 	class Program
 	{
 		

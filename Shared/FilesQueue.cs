@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace ThreadsTest.Shared
+namespace DirHasher.Shared
 {
-	public abstract class FilesQueue<TFile>
+	public abstract class FilesQueue<TFile> : IFilesQueue
 	{
 		protected Queue<TFile> tFiles;
 		static Mutex mutex = new Mutex();

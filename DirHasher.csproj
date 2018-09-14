@@ -46,7 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DirectoriesHasher.cs" />
-    <Compile Include="Processing\BaseUpdater.cs" />
+    <Compile Include="Processing\BaseProcessor.cs" />
+    <Compile Include="Processing\Dependent.cs" />
     <Compile Include="Shared\Base\Base.cs" />
     <Compile Include="Shared\Base\Params\HashParams.cs" />
     <Compile Include="Shared\Base\Params\ScanParams.cs" />
@@ -56,9 +57,10 @@
     <Compile Include="Shared\Base\Transactions\AddScanQuery.cs" />
     <Compile Include="Shared\Base\Transactions\BaseQuery.cs" />
     <Compile Include="Shared\FilesQueue.cs" />
+    <Compile Include="Shared\IFilesQueue.cs" />
     <Compile Include="Shared\Params\RawFileParams.cs" />
-    <Compile Include="Processing\DataCollector.cs" />
-    <Compile Include="Processing\Hasher.cs" />
+    <Compile Include="Processing\OsProcessor.cs" />
+    <Compile Include="Processing\HashProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\HashedFilesQueue.cs" />
@@ -70,6 +72,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HashMe\1.txt" />
+    <Content Include="HashMe\2.txt" />
+    <Content Include="HashMe\3.txt" />
+    <Content Include="HashMe\7.txt" />
+    <Content Include="HashMe\8.txt" />
+    <Content Include="HashMe\Folder1\4.txt" />
+    <Content Include="HashMe\Folder2\5.txt" />
+    <Content Include="HashMe\Folder2\Folder3\6.txt" />
     <Content Include="SqlPlusLog.txt" />
   </ItemGroup>
   <ItemGroup />

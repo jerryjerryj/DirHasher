@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DirHasher.Shared
 {
-	public class RawFileParams
+	public interface IFilesQueue
 	{
-		public byte[] data { get; set; }
-		public string path { get; set; }
+		bool IsOver { get; set; }
+		bool IsEmpty();
 	}
 }

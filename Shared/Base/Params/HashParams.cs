@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThreadsTest.Shared.Base.Params
+namespace DirHasher.Shared.Base.Params
 {
 	internal class HashParams
 	{

@@ -7,7 +7,7 @@ using System.Data.OleDb;
 using System.Data;
 using Dapper;
 
-namespace ThreadsTest.Shared.Base.Transactions
+namespace DirHasher.Shared.Base.Transactions
 {
 	//TODO не очень наследники, переделать
 	public abstract class BaseQuery<TQueryParams> : Base

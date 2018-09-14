@@ -1,0 +1,8 @@
+F:\My_Pro\DirHasher\DirHasher\bin\Debug\ThreadsTest.exe.config
+F:\My_Pro\DirHasher\DirHasher\bin\Debug\ThreadsTest.exe
+F:\My_Pro\DirHasher\DirHasher\bin\Debug\ThreadsTest.pdb
+F:\My_Pro\DirHasher\DirHasher\bin\Debug\Dapper.dll
+F:\My_Pro\DirHasher\DirHasher\bin\Debug\Dapper.xml
+F:\My_Pro\DirHasher\DirHasher\obj\Debug\DirHasher.csprojResolveAssemblyReference.cache
+F:\My_Pro\DirHasher\DirHasher\obj\Debug\ThreadsTest.exe
+F:\My_Pro\DirHasher\DirHasher\obj\Debug\ThreadsTest.pdb

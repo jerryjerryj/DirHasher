@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ThreadsTest.Shared.Base.Params;
+using DirHasher.Shared.Base.Params;
 using System.Data.OleDb;
 using Dapper;
-namespace ThreadsTest.Shared.Base.Transactions
+namespace DirHasher.Shared.Base.Transactions
 {
 	class AddHashQuery<TQueryParams> : BaseQuery<TQueryParams> where TQueryParams : HashParams
 	{

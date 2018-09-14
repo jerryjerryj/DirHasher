@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Threading;
 
-using ThreadsTest.Processing;
-using ThreadsTest.Shared;
+using DirHasher.Processing;
+using DirHasher.Shared;
 
 
-namespace ThreadsTest
+namespace DirHasher
 {
 	public class DirectoriesHasher
 	{
-		private DataCollector dataCollector { get; set; }
-		private Hasher hasher { get; set; }
-		private BaseUpdater baseUpdater{ get; set; }
+		private OsProcessor dataCollector { get; set; }
+		private HashProcessor hasher { get; set; }
+		private BaseProcessor baseUpdater{ get; set; }
 
 		private Thread dcThread { get; set; }
 		private Thread buThread { get; set; }
@@ -23,21 +23,21 @@ namespace ThreadsTest
 			var rawFilesQueue = new RawFilesQueue();
 			var hashedFilesQueue = new HashedFilesQueue();
 
-			dataCollector = new DataCollector(rawFilesQueue, directories);
-			hasher = new Hasher(rawFilesQueue, hashedFilesQueue);
-			baseUpdater = new BaseUpdater(hashedFilesQueue);
+			dataCollector = new OsProcessor(rawFilesQueue, directories);
+			hasher = new HashProcessor(rawFilesQueue, hashedFilesQueue);
+			baseUpdater = new BaseProcessor(hashedFilesQueue);
 
 			CreateThreads(maxHashingThreads);
 		}
 
 		private void CreateThreads(int maxHashingThreads)
 		{
-			dcThread = new Thread(new ThreadStart(dataCollector.Start));
-			buThread = new Thread(new ThreadStart(baseUpdater.Start));
+			dcThread = new Thread(new ThreadStart(dataCollector.Run));
+			buThread = new Thread(new ThreadStart(baseUpdater.Run));
 			hThreads = new List<Thread>();
 			for (int i = 0; i < maxHashingThreads; ++i)
 			{
-				var thread = new Thread(new ThreadStart(hasher.Start));
+				var thread = new Thread(new ThreadStart(hasher.Run));
 				thread.Name = i.ToString();
 				hThreads.Add(thread);
 			}
