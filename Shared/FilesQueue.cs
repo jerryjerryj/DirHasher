@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace DirHasher.Shared
 {
-	public abstract class FilesQueue<TFile> : IFilesQueue
+	public abstract class FilesQueue<TFile> : IFilesQueue 
 	{
 		protected Queue<TFile> tFiles;
 		static Mutex mutex = new Mutex();

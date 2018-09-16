@@ -13,16 +13,21 @@ namespace DirHasher.Processing
 		{
 			this.dependOfQueue = hashedFilesQueue;
 		}
-		public void Run()
+		protected override void ExternalRun()
 		{
-			currentScanId = StartNewScan();
-			RunInProcessQueues(InsertNextHashToBase);
+			currentScanId = StartNewScan(); //TODO переделать, чтобы было видно что ID передаётся далее в InsertNextHashToBase
+			RunWithQueueInteractions(InsertNextHashToBase);
 		}
+
+		protected override void End() { }
+
 		private void InsertNextHashToBase()
 		{
-			var hashedFile = dependOfQueue.GetNextFile();
-			var query = new AddHashQuery<HashParams>();
-			query.Execute(new HashParams() { hash = hashedFile.hash, path = hashedFile.path, scanId = currentScanId });
+			using (var hashedFile = dependOfQueue.GetNextFile())
+			{
+				var query = new AddHashQuery<HashParams>();
+				query.Execute(new HashParams() { hash = hashedFile.hash, path = hashedFile.path, scanId = currentScanId });
+			}
 		}
 
 		private int StartNewScan()

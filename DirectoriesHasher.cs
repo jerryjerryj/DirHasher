@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 using DirHasher.Processing;
 using DirHasher.Shared;
@@ -12,11 +13,12 @@ namespace DirHasher
 	{
 		private OsProcessor dataCollector { get; set; }
 		private HashProcessor hasher { get; set; }
-		private BaseProcessor baseUpdater{ get; set; }
+		private BaseProcessor baseUpdater { get; set; }
 
 		private Thread dcThread { get; set; }
 		private Thread buThread { get; set; }
 		private List<Thread> hThreads { get; set; }
+		private List<Thread> allThreads { get; set; }
 
 		public DirectoriesHasher(List<string> directories, int maxHashingThreads)
 		{
@@ -41,10 +43,14 @@ namespace DirHasher
 				thread.Name = i.ToString();
 				hThreads.Add(thread);
 			}
+
+			allThreads = new List<Thread>();
+			allThreads.Add(dcThread);
+			allThreads.AddRange(hThreads);
+			allThreads.Add(buThread);
 		}
 		public void Run()
 		{
-
 			Console.WriteLine("Starting Data Collector...");
 			dcThread.Start();
 
@@ -55,12 +61,10 @@ namespace DirHasher
 			Console.WriteLine("Starting DB Updater...");
 			buThread.Start();
 
-			while (buThread.ThreadState != ThreadState.Stopped)
-				Thread.Sleep(1000);
-			Console.WriteLine("Done");
-			Console.ReadKey();
-
+			foreach (var thread in allThreads)
+				thread.Join();
 
 		}
+
 	}
 }

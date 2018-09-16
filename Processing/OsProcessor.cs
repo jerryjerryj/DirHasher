@@ -1,14 +1,11 @@
 ﻿using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System;
+using System.Collections.Generic;
 using DirHasher.Shared;
 
 namespace DirHasher.Processing
 {
-	public class OsProcessor
+	public class OsProcessor :Processor
 	{
 		private List<string> directories { get; set; }
 		private RawFilesQueue rawFilesQueue { get; set; }
@@ -19,10 +16,14 @@ namespace DirHasher.Processing
 			this.directories = directories;
 		}
 
-		public void Run()
-		{	
+		protected override void  ExternalRun()
+		{
 			foreach (var directory in directories)
 				UpdateQueueFromDir(directory);
+		}
+
+		protected override void End()
+		{
 			rawFilesQueue.IsOver = true;
 		}
 
@@ -33,9 +34,7 @@ namespace DirHasher.Processing
 
 			var directories = Directory.GetDirectories(currentDirectory);
 			foreach (var directory in directories)
-			{
 				UpdateQueueFromDir(directory);
-			}
 		}
 		private List<RawFileParams> GetFiles(string currentDirectory)
 		{
@@ -43,11 +42,13 @@ namespace DirHasher.Processing
 			var hashableFiles = new List<RawFileParams>();
 			foreach (var filePath in files)
 			{
-				byte[] fileBytes = File.ReadAllBytes(filePath);
-				hashableFiles.Add(new RawFileParams(){
+				var fileBytes = File.ReadAllBytes(filePath);
+				hashableFiles.Add(new RawFileParams()
+				{
 					data = fileBytes,
 					path = filePath
 				});
+				
 			}
 			return hashableFiles;
 		}

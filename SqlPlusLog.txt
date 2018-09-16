@@ -23,7 +23,7 @@ END;
 CREATE TABLE hashes (
 id number(10) NOT NULL,
 path varchar(500) NOT NULL,
-hash varchar(32),
+hash varchar(32) NOT NULL,
 scan_id number(10) NOT NULL,
 CONSTRAINT hashes_pk PRIMARY KEY (id),
 CONSTRAINT hashes_fk

@@ -1,9 +1,11 @@
 ﻿using System.Text;
 using System.Threading;
+using System;
 
 using System.Security.Cryptography;
 
 using DirHasher.Shared;
+
 
 
 namespace DirHasher.Processing
@@ -19,21 +21,28 @@ namespace DirHasher.Processing
 			this.hashedFilesQueue = hashedFilesQueue;
 		}
 
-		public void Run()
+		protected  override void ExternalRun()
 		{
-			RunInProcessQueues(HashNextFileInQueue);
+			RunWithQueueInteractions(HashNextFileInQueue);
+		}
+
+		protected override void End()
+		{
 			hashedFilesQueue.IsOver = true;
 		}
 
 		private void HashNextFileInQueue()
 		{
-			var rawFile = dependOfQueue.GetNextFile();
-			var hashedFile = new HashedFileParams()
+			using (var rawFile = dependOfQueue.GetNextFile())
 			{
-				path = rawFile.path,
-				hash = GetMD5(rawFile.data)
-			};
-			hashedFilesQueue.AddNewHashedFile(hashedFile, Thread.CurrentThread.Name);
+				var hashedFile = new HashedFileParams()
+				{
+					path = rawFile.path,
+					hash = GetMD5(rawFile.data)
+				};
+				hashedFilesQueue.AddNewHashedFile(hashedFile, Thread.CurrentThread.Name);
+			}
+
 		}
 
 		private string GetMD5(byte[] toHash)

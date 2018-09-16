@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace DirHasher.Shared.Base.Params
 {
-	internal class ScanParams
+	internal class LogParams
 	{
-		public DateTime startTime { get; set; } 
+		public DateTime timeOccured { get; set; }
+		public string exceptionMessage { get; set; }
 	}
 }

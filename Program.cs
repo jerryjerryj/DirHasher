@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System;
 using System.Collections.Generic;
 
 namespace DirHasher
@@ -9,13 +9,20 @@ namespace DirHasher
 		
 		static void Main(string[] args)
 		{
-			var dirs = new List <string>(){ @"F:\HashMe\" };
-			int maxHashingThreads = 2;
+			var dirs = new List <string>(){ @"F:\Dope [ALAC]" };
+			int hashingThreads = 3;
 
-			var hasher = new DirectoriesHasher(dirs, maxHashingThreads);
+			var watch = System.Diagnostics.Stopwatch.StartNew();
+			var hasher = new DirectoriesHasher(dirs, hashingThreads);
 			hasher.Run();
-
+			watch.Stop();
+			var elapsedMs = watch.ElapsedMilliseconds;
+			Console.WriteLine(elapsedMs);
 			
+			Console.WriteLine("Press any key ");
+			Console.ReadKey();
+
+
 		}
 
 	}

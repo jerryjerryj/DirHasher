@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace DirHasher.Shared
 {
-	public class RawFileParams: Params
+	public abstract class Params :IDisposable
 	{
-		public byte[] data { get; set; }
-		public string path { get; set; }
+		public void Dispose()
+		{
+			GC.SuppressFinalize(this);
+		}
 	}
 }
